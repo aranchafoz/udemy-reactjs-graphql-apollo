@@ -10,7 +10,15 @@ app.get('/', (req, res) => {
 })
 
 // resolver
-const root = {hello: () => "Hello world from GraphQL"}
+const root = {customer: () => {
+  return {
+    "id": 906534567478656,
+    "name": "Pep",
+    "surname": "Huchiston",
+    "company": "WoodForGood",
+    "email": "pepe@wood.com"
+  }
+}}
 
 app.use('/graphql', graphqlHTTTP({
   // schema which wil be use it

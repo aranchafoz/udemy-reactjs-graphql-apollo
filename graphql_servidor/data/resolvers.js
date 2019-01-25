@@ -14,14 +14,15 @@ class Customer {
 // Aux DB
 const customerDB = {}
 
-// resolver
-const resolvers = {
-  getCustomer : ({id}) => new Customer(id, customerDB[id]),
-  createCustomer : ({input}) => {
-    const id = require('crypto').randomBytes(10).toString('hex')
-    customerDB[id] = input
-    return new Customer(id, input)
+export const resolvers = {
+  Query: {
+    getCustomer : ({id}) => new Customer(id, customerDB[id])
+  },
+  Mutation: {
+    createCustomer : ({input}) => {
+      const id = require('crypto').randomBytes(10).toString('hex')
+      customerDB[id] = input
+      return new Customer(id, input)
+    }
   }
 }
-
-export default resolvers

@@ -1,9 +1,7 @@
 import express from 'express'
 // graphql
 import graphqlHTTTP from 'express-graphql'
-import schema from './schema'
-// resolvers
-import resolvers from './resolvers'
+import { schema } from './data/schema'
 
 const app = express()
 
@@ -14,8 +12,6 @@ app.get('/', (req, res) => {
 app.use('/graphql', graphqlHTTTP({
   // schema which wil be use it
   schema,
-  // resolver is sent as rootValue
-  rootValue: resolvers,
   // use graphiql
   graphiql : true
 }))

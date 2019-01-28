@@ -1,19 +1,15 @@
 import express from 'express'
 // graphql
-import graphqlHTTTP from 'express-graphql'
-import { schema } from './data/schema'
+import { ApolloServer } from 'apollo-server-express'
+import { typeDefs } from './data/schema'
+import { resolvers } from './data/resolvers'
 
 const app = express()
 
-app.get('/', (req, res) => {
-  res.send('Ready')
+const server = new ApolloServer({typeDefs, resolvers})
+
+server.applyMiddleware({app})
+
+app.listen({port: 4000}, () => {
+  console.log(`Server is running on http://localhost:4000${server.graphqlPath}`)
 })
-
-app.use('/graphql', graphqlHTTTP({
-  // schema which wil be use it
-  schema,
-  // use graphiql
-  graphiql : true
-}))
-
-app.listen(8000, () => console.log('Server is running'))

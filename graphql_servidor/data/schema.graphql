@@ -43,7 +43,7 @@ input CustomerInput {
     name: String!
     surname: String!
     company: String!
-    emails: [EmailInput]!
+    emails: [EmailInput]
     age: Int!
     type: CustomerType!
     orders: [OrderInput]
@@ -54,4 +54,6 @@ type Mutation {
   #Resolver Name, Input with Data and Returned Value
   """ Allow you to create New Customers """
   createCustomer(input: CustomerInput) : Customer
+  updateCustomer(input: CustomerInput) : Customer
+  deleteCustomer(id: ID!) : Boolean
 }

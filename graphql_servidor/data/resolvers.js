@@ -35,15 +35,31 @@ export const resolvers = {
 
       newCustomer.id = newCustomer._id
 
-      return new Promise((resolve, object) => {
+      return new Promise((resolve, reject) => {
         newCustomer.save((error) => {
-          if(error) rejects(error)
+          if(error) reject(error)
           else resolve(newCustomer)
         })
       })
 
       customerDB[id] = input
       return new Customer(id, input)
+    },
+    updateCustomer : (root, {input}) => {
+      return new Promise((resolve, reject) => {
+        Customers.findOneAndUpdate({_id: input.id}, input, {new: true}, (error, customer) => {
+          if(error) reject(error)
+          else resolve(customer)
+        })
+      })
+    },
+    deleteCustomer : (root, {id}) => {
+      return new Promise((resolve, reject) => {
+        Customers.findOneAndRemove({_id: id}, (error) => {
+          if(error) reject(error)
+          else resolve(true)
+        })
+      })
     }
   }
 }

@@ -3,7 +3,7 @@ type Customer {
   name: String
   surname: String
   company: String
-  emails: [Email]
+  email: String #[Email]
   age: Int
   type: CustomerType
   orders: [Order]
@@ -44,7 +44,7 @@ input CustomerInput {
     name: String!
     surname: String!
     company: String!
-    emails: [EmailInput]
+    email: String! #[EmailInput]
     age: Int!
     type: CustomerType!
     orders: [OrderInput]

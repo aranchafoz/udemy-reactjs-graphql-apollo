@@ -26,7 +26,8 @@ enum CustomerType {
 
 type Query {
   getCustomer(id: ID) : Customer
-  getCustomers(limit: Int): [Customer]
+  getCustomers(limit: Int, offset: Int): [Customer]
+  totalCustomers: Int
 }
 
 input OrderInput {

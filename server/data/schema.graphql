@@ -18,6 +18,13 @@ type Email {
   email: String
 }
 
+type Product {
+  id: ID
+  name: String
+  price: Int
+  stock: Int
+}
+
 """ Asign a category to a Customer """
 enum CustomerType {
   BASIC
@@ -39,7 +46,7 @@ input EmailInput {
   email: String
 }
 
-""" Fields for New Customer """
+""" Fields for new Customer """
 input CustomerInput {
     id: ID
     name: String!
@@ -51,6 +58,14 @@ input CustomerInput {
     orders: [OrderInput]
 }
 
+""" Fields for new Product """
+input ProductInput {
+  id: ID
+  name: String!
+  price: Int!
+  stock: Int!
+}
+
 """ Mutations for creating Customers """
 type Mutation {
   #Resolver Name, Input with Data and Returned Value
@@ -58,4 +73,6 @@ type Mutation {
   createCustomer(input: CustomerInput) : Customer
   updateCustomer(input: CustomerInput) : Customer
   deleteCustomer(id: ID!) : Boolean
+  #products
+  createProduct(input: ProductInput) : Product
 }

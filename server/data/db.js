@@ -4,8 +4,9 @@ mongoose.Promise = global.Promise
 
 mongoose.connect('mongodb://localhost/customers', {useNewUrlParser: true})
 
-// Define customer schema
+mongoose.set('setFindAndModify', false)
 
+// Customers
 const customersSchema = new mongoose.Schema({
   name: String,
   surname: String,
@@ -18,4 +19,13 @@ const customersSchema = new mongoose.Schema({
 
 const Customers = mongoose.model('customers', customersSchema)
 
-export {Customers}
+// Products
+const productsSchema = new mongoose.Schema({
+  name: String,
+  price: Number,
+  stock: Number
+})
+
+const Products = mongoose.model('products', productsSchema)
+
+export {Customers, Products}

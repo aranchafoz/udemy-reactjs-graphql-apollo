@@ -32,9 +32,13 @@ enum CustomerType {
 }
 
 type Query {
+  # Customer
   getCustomer(id: ID) : Customer
   getCustomers(limit: Int, offset: Int): [Customer]
   totalCustomers: Int
+  # Product
+  getProducts(limit: Int, offset: Int): [Product]
+  getProduct(id: ID): Product
 }
 
 input OrderInput {
@@ -75,4 +79,6 @@ type Mutation {
   deleteCustomer(id: ID!) : Boolean
   #products
   createProduct(input: ProductInput) : Product
+  updateProduct(input: ProductInput) : Product
+  deleteProduct(id: ID) : Boolean
 }

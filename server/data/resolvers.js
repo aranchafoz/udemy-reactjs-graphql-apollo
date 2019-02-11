@@ -37,6 +37,17 @@ export const resolvers = {
           else resolve(count)
         })
       })
+    },
+    getProducts : (root, {limit, offset}) => {
+      return Products.find({}).limit(limit).skip(offset)
+    },
+    getProduct : (root, {id}) => {
+      return new Promise((resolve, reject) => {
+        Products.findById(id, (error, product) => {
+          if(error) reject(error)
+          else resolve(product)
+        })
+      })
     }
   },
   Mutation: {
@@ -73,7 +84,7 @@ export const resolvers = {
     },
     deleteCustomer : (root, {id}) => {
       return new Promise((resolve, reject) => {
-        Customers.findOneAndRemove({_id: id}, (error) => {
+        Customers.findOneAndDelete({_id: id}, (error) => {
           if(error) reject(error)
           else resolve(true)
         })
@@ -92,6 +103,22 @@ export const resolvers = {
         newProduct.save((error) => {
           if(error) reject(error)
           else resolve(newProduct)
+        })
+      })
+    },
+    updateProduct : (root, {input}) => {
+      return new Promise((resolve, reject) => {
+        Products.findOneAndUpdate({_id: input.id}, input, {new: true}, (error, product) => {
+          if(error) reject(error)
+          else resolve(product)
+        })
+      })
+    },
+    deleteProduct : (root, {id}) => {
+      return new Promise((resolve, reject) => {
+        Products.findOneAndDelete({_id: id}, (error) => {
+          if(error) reject(error)
+          else resolve(true)
         })
       })
     }

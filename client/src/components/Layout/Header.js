@@ -12,7 +12,12 @@ const Header = () => (
             <div className="collapse navbar-collapse" id="navegacion">
                 <ul className="navbar-nav ml-auto text-right">
                     <li className="nav-item active">
-                        <Link to="/customer/new" className="btn btn-success">New Customer</Link>
+                        <Link to="/customer/new" className="btn btn-success">
+                          New Customer
+                        </Link>
+                        <Link to="/product/new" className="btn btn-success ml-2">
+                          New Product
+                        </Link>
                     </li>
                 </ul>
             </div>

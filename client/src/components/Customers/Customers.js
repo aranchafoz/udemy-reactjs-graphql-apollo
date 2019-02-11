@@ -2,9 +2,9 @@ import React, { Fragment, Component } from 'react';
 import { Query, Mutation } from 'react-apollo'
 import { Link } from 'react-router-dom'
 
-import { CUSTOMERS_QUERY } from '../queries'
-import { DELETE_CUSTOMER } from '../mutations'
-import Pager from './Pager'
+import { CUSTOMERS_QUERY } from '../../queries'
+import { DELETE_CUSTOMER } from '../../mutations'
+import Pager from './../Pager'
 
 class Customers extends Component {
   limit = 10

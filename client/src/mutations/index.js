@@ -32,3 +32,12 @@ export const DELETE_CUSTOMER = gql`
     deleteCustomer(id: $id)
   }
 `
+
+export const NEW_PRODUCT = gql`
+  mutation createProduct($input: ProductInput){
+    createProduct(input: $input) {
+      id
+      name
+    }
+  }
+`

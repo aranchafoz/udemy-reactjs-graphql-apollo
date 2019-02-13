@@ -3,11 +3,19 @@ import React, {Component, Fragment} from 'react';
 import {NEW_PRODUCT} from '../../mutations'
 import {Mutation} from 'react-apollo'
 
+const initialState = {
+  name: '',
+  price: '',
+  stock: ''
+}
+
 class NewProduct extends Component {
   state = {
-    name: '',
-    price: '',
-    stock: ''
+    ...initialState
+  }
+
+  cleanState = () => {
+    this.setState({...initialState})
   }
 
   updateState = e => {
@@ -25,7 +33,11 @@ class NewProduct extends Component {
     e.preventDefault()
 
     newProduct().then(data => {
-      console.log(data)
+      // Clean state
+      this.cleanState()
+
+      // Redirect
+      this.props.history.push('/products')
     })
   }
 

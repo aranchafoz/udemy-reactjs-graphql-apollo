@@ -45,7 +45,7 @@ class Customers extends Component {
           return (
             <Fragment>
               <h2 className="text-center">Customers List</h2>
-            <ul className="list-group mt-4">
+              <ul className="list-group mt-4">
                 {data.getCustomers.map( item => (
                   <li key={item.id} className="list-group-item">
                     <div className="row justify-content-between align-items-center">

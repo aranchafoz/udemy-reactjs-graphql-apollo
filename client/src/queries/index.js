@@ -38,3 +38,13 @@ export const PRODUCTS_QUERY = gql`
     }
   }
 `
+
+export const PRODUCT_QUERY = gql`
+  query ConsultProduct($id: ID){
+  	getProduct(id: $id) {
+      name
+      price
+      stock
+    }
+  }
+`

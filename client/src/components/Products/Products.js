@@ -26,7 +26,6 @@ class Products extends Component {
           {({ loading, error, data, startPolling, stopPolling }) => {
             if(loading) return "Loading..."
             if(error) return `Error: ${error.message}`
-            console.log(data)
 
             return (
               <table className="table">
@@ -41,7 +40,6 @@ class Products extends Component {
                 </thead>
                 <tbody>
                   {data.getProducts.map(item => {
-                    console.log(item)
                     const {id} = item
 
                     return (

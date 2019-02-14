@@ -11,13 +11,43 @@ const Header = () => (
 
             <div className="collapse navbar-collapse" id="navegacion">
                 <ul className="navbar-nav ml-auto text-right">
-                    <li className="nav-item active">
-                        <Link to="/customer/new" className="btn btn-success">
+                    <li className="nav-item dropdown mr-lg-2 mb-2 mb-lg-0">
+                      <button
+                        className="nav-link dropdown-toggle btn btn-block btn-success"
+                        data-toggle="dropdown"
+                        >
+                        Customers
+                      </button>
+                      <div
+                        className="dropdown-menu"
+                        aria-labelledby="navegation"
+                      >
+                        <Link to="/customers" className="dropdown-item">
+                          See Customers
+                        </Link>
+                        <Link to="/customer/new" className="dropdown-item">
                           New Customer
                         </Link>
-                        <Link to="/product/new" className="btn btn-success ml-2">
+                      </div>
+                    </li>
+                    <li className="nav-item dropdown">
+                      <button
+                        className="nav-link dropdown-toggle btn btn-block btn-success"
+                        data-toggle="dropdown"
+                        >
+                        Products
+                      </button>
+                      <div
+                        className="dropdown-menu"
+                        aria-labelledby="navegation"
+                      >
+                        <Link to="/products" className="dropdown-item">
+                          See Products
+                        </Link>
+                        <Link to="/product/new" className="dropdown-item">
                           New Product
                         </Link>
+                      </div>
                     </li>
                 </ul>
             </div>

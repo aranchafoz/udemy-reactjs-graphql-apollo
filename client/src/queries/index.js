@@ -36,6 +36,7 @@ export const PRODUCTS_QUERY = gql`
       price
       stock
     }
+    totalProducts
   }
 `
 

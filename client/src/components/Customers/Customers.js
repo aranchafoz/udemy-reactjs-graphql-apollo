@@ -4,12 +4,18 @@ import { Link } from 'react-router-dom'
 
 import { CUSTOMERS_QUERY } from '../../queries'
 import { DELETE_CUSTOMER } from '../../mutations'
+
+import Success from '../Alerts/Success'
 import Pager from './../Pager'
 
 class Customers extends Component {
   limit = 10
 
   state = {
+    alert: {
+      show: false,
+      message: ''
+    },
     pager: {
       actual: 1,
       offset: 0
@@ -35,6 +41,8 @@ class Customers extends Component {
   }
 
   render() {
+    const {alert: {show, message}} = this.state
+    const alert = (show) ? <Success message={message} /> : ''
     return (
       <Query query={CUSTOMERS_QUERY} pollInterval={1000} variables={{limit: this.limit, offset: this.state.pager.offset}}>
         {({ loading, error, data, startPolling, stopPolling }) => {
@@ -45,6 +53,7 @@ class Customers extends Component {
           return (
             <Fragment>
               <h2 className="text-center">Customers List</h2>
+              {alert}
               <ul className="list-group mt-4">
                 {data.getCustomers.map( item => (
                   <li key={item.id} className="list-group-item">
@@ -53,7 +62,26 @@ class Customers extends Component {
                         {item.name} {item.surname}
                       </div>
                       <div className="col-md-4 d-flex justify-content-end">
-                        <Mutation mutation={DELETE_CUSTOMER}>
+                        <Mutation
+                          mutation={DELETE_CUSTOMER}
+                          onCompleted={(data) => {
+                            this.setState({
+                              alert: {
+                                show: data.deleteCustomer,
+                                message: 'Customer deleted successfully'
+                              }
+                            }, () => {
+                              setTimeout(() => {
+                                this.setState({
+                                  alert: {
+                                    show: false,
+                                    message: ''
+                                  }
+                                })
+                              }, 3000)
+                            })
+                          }}
+                        >
                           {deleteCustomer => (
                             <button
                               type="button"
@@ -79,7 +107,7 @@ class Customers extends Component {
               </ul>
               <Pager
                 actual={this.state.pager.actual}
-                totalCustomers={data.totalCustomers}
+                total={data.totalCustomers}
                 limit={this.limit}
                 pagePrev={this.pagePrev}
                 pageNext={this.pageNext}
